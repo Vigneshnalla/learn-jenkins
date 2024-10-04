@@ -37,5 +37,10 @@ pipeline {
                 sh 'echo Post Build ...'
             }
         }
+          stage('EOB') {
+            steps {
+                sh 'echo E)B ...'
+            }
+        }
     }
 }
