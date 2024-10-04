@@ -39,7 +39,7 @@ pipeline {
         }
           stage('EOB') {
             steps {
-                sh 'echo E)B ...'
+                sh 'echo EOB ...'
             }
         }
     }
