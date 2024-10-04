@@ -2,20 +2,39 @@ pipeline {
     agent {
         label 'AGENT-1'
     }
+    options {
+        disableConcurrentBuilds()
+    }
+    parameters {
+        choice(name: 'environment', choices: ['dev', 'prod'], description: 'Select environment')
+    }
     stages {
-        stage('Pre Build') {
+
+        stage('Dev') {
+            when {
+                expression {
+                    params.environment == 'dev'
+                }
+            }
             steps {
-                sh 'echo Pre Build ...'
+                sh 'echo Pre Build for Dev...'
             }
         }
-        stage('Build') {
+
+        stage('Prod') {
+            when {
+                expression {
+                    params.environment == 'prod'
+                }
+            }
             steps {
-                 sh 'echo Build ...'
+                sh 'echo Build for Prod...'
             }
         }
+
         stage('Post Build') {
             steps {
-                 sh 'echo Post Build ...'
+                sh 'echo Post Build ...'
             }
         }
     }
